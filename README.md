@@ -1,253 +1,321 @@
-# Scientific Paper Converter
+# LaTeXZen - Scientific Paper Converter
 
-A web application for converting documents to scientific paper formats (IEEE, MDPI, Springer, etc.) with LaTeX editor functionality.
+A comprehensive web application for converting documents to scientific paper formats (IEEE, MDPI, Springer, etc.) with integrated LaTeX editor functionality.
 
-## Features
+## 🌟 Features
 
-- **Document Upload**: Support for PDF, DOCX, TXT, LaTeX, and image formats
-- **Document Processing**: Extract and understand document structure including text, images, graphs, and math formulas
+### Core Functionality
+- **Document Upload & Processing**: Support for PDF, DOCX, TXT, LaTeX, and image formats
+- **Structure Analysis**: Extract and understand document structure including text, images, graphs, and math formulas
 - **Format Conversion**: Convert documents to various scientific paper formats
-- **LaTeX Editor**: Web-based LaTeX editor with real-time preview
-- **Template Management**: IEEE, MDPI, Springer templates with custom template creation
-- **Team Collaboration**: Create teams, share templates and documents
-- **Citation Management**: Manage citations and references
+- **Web-Based LaTeX Editor**: Full-featured LaTeX editor with real-time preview (coming soon)
+
+### Template System
+- **Standard Templates**: IEEE, MDPI, Springer templates included
+- **Custom Templates**: Create and share templates according to publisher guidelines
+- **Template Categories**: Organize templates by journal, conference, or purpose
+- **Template Validation**: Ensure templates meet publisher requirements
+
+### Collaboration
+- **Team Management**: Create teams, invite members, manage roles
+- **Document Sharing**: Share documents within teams or publicly
+- **Template Sharing**: Share templates globally or within teams
+- **Access Control**: Granular permissions for documents and templates
+
+### Document Management
 - **Version Control**: Track document versions and changes
+- **Citation Management**: Manage citations and references
+- **Export Options**: Export to LaTeX, PDF, and other formats
 
-## Technology Stack
-
-- **Backend**: FastAPI (Python)
-- **Database**: SQLite (default), PostgreSQL (production)
-- **Frontend**: React + Next.js (planned)
-- **Document Processing**: Custom Python services
-- **LaTeX Compilation**: pdflatex
-- **Containerization**: Docker
-- **Deployment**: Docker Compose
-
-## Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
-
 - Python 3.11+
 - Docker and Docker Compose
 - LaTeX distribution (for PDF compilation)
 
 ### Installation
 
-1. Clone the repository:
+#### 1. Clone the Repository
 ```bash
-git clone <repository-url>
-cd paper-converter
+git clone git@github.com:lef-zach/la-texzen.git
+cd la-texzen
 ```
 
-2. Create a virtual environment:
+#### 2. Set Up Virtual Environment
 ```bash
+# Create virtual environment
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
-. venv/Scripts/activate   # Windows
+
+# Activate virtual environment
+# Linux/Mac:
+source venv/bin/activate
+
+# Windows:
+. venv/Scripts/activate
+
+# Upgrade pip
+pip install --upgrade pip
 ```
 
-3. Install dependencies:
+#### 3. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Install LaTeX distribution:
-   - **Linux**: `sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-latex-extra`
-   - **Windows**: Install MiKTeX or TeX Live
-   - **Mac**: Install MacTeX
+#### 4. Install LaTeX Distribution
 
-### Running the Application
+**Linux (Ubuntu/Debian):**
+```bash
+sudo apt-get update
+sudo apt-get install -y --no-install-recommends \
+    build-essential \
+    libpq-dev \
+    poppler-utils \
+    texlive-latex-base \
+    texlive-fonts-recommended \
+    texlive-latex-extra \
+    lmodern \
+    cm-super
+```
 
-1. Start the application:
+**Windows:**
+- Download and install MiKTeX: https://miktex.org/download
+- Or install TeX Live: https://www.tug.org/texlive/
+
+**macOS:**
+```bash
+brew install --cask mactex
+```
+
+#### 5. Run the Application
 ```bash
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-2. Open your browser and navigate to:
-   - API documentation: http://localhost:8000/docs
-   - ReDoc: http://localhost:8000/redoc
+#### 6. Access the Application
+- **API Documentation**: http://localhost:8000/docs
+- **ReDoc Documentation**: http://localhost:8000/redoc
+- **Interactive API**: http://localhost:8000/docs
 
-### Running with Docker
+## 📖 Documentation
 
-```bash
-docker-compose up --build
-```
+### User Documentation
+- [User Guide](docs/USER_GUIDE.md) - Complete user manual
+- [Template Guide](docs/TEMPLATE_GUIDE.md) - How to use and create templates
+- [API Reference](docs/API.md) - Complete API documentation
 
-## API Endpoints
+### Developer Documentation
+- [Architecture Overview](docs/ARCHITECTURE.md) - System architecture
+- [Development Guide](docs/DEVELOPMENT.md) - Setting up development environment
+- [Contribution Guide](docs/CONTRIBUTING.md) - How to contribute
+
+### Deployment Documentation
+- [Deployment Guide](docs/DEPLOYMENT.md) - Production deployment
+- [Docker Guide](docs/DOCKER.md) - Docker configuration
+- [Security Guide](docs/SECURITY.md) - Security best practices
+
+## 🔌 API Endpoints
 
 ### Authentication
-- `POST /register` - Register a new user
-- `POST /token` - Login and get access token
-- `GET /users/me` - Get current user information
+```http
+POST /register          # Register new user
+POST /token            # Login and get access token
+GET  /users/me         # Get current user info
+```
 
 ### Teams
-- `POST /teams` - Create a new team
-- `GET /teams` - Get user's teams
-- `GET /teams/{team_id}` - Get team details
-- `POST /teams/{team_id}/join` - Join a team
-- `POST /teams/{team_id}/leave` - Leave a team
-- `GET /teams/{team_id}/members` - Get team members
-- `DELETE /teams/{team_id}/members/{user_id}` - Remove team member
+```http
+POST   /teams                    # Create new team
+GET    /teams                   # Get user's teams
+GET    /teams/{team_id}         # Get team details
+POST   /teams/{team_id}/join    # Join team
+POST   /teams/{team_id}/leave   # Leave team
+GET    /teams/{team_id}/members # Get team members
+DELETE /teams/{team_id}/members/{user_id}  # Remove member
+```
 
 ### Templates
-- `POST /templates` - Create a new template
-- `GET /templates` - Get available templates
-- `GET /templates/{template_id}` - Get template details
-- `PATCH /templates/{template_id}/visibility` - Update template visibility
-- `DELETE /templates/{template_id}` - Delete a template
-- `GET /template-categories` - Get template categories
-- `POST /template-categories` - Create a template category
+```http
+POST   /templates                    # Create template
+GET    /templates                   # Get available templates
+GET    /templates/{template_id}     # Get template details
+PATCH  /templates/{template_id}/visibility  # Update visibility
+DELETE /templates/{template_id}     # Delete template
+GET    /template-categories         # Get template categories
+POST   /template-categories         # Create category
+```
 
 ### Documents
-- `POST /documents` - Create a new document
-- `GET /documents` - Get user's documents
-- `GET /documents/{document_id}` - Get document details
-- `PATCH /documents/{document_id}` - Update a document
-- `DELETE /documents/{document_id}` - Delete a document
-- `POST /documents/{document_id}/convert` - Convert document to different format
-- `GET /documents/{document_id}/export` - Export document in different formats
+```http
+POST   /documents                    # Create document
+GET    /documents                   # Get user's documents
+GET    /documents/{document_id}     # Get document details
+PATCH  /documents/{document_id}     # Update document
+DELETE /documents/{document_id}     # Delete document
+POST   /documents/{document_id}/convert    # Convert format
+GET    /documents/{document_id}/export     # Export document
+```
 
 ### Files
-- `POST /upload` - Upload a file
-- `GET /upload/{filename}` - Get uploaded file
-- `DELETE /upload/{filename}` - Delete uploaded file
-- `POST /upload/temp` - Upload temporary file
-- `DELETE /temp/{filename}` - Delete temporary file
+```http
+POST /upload           # Upload file
+GET /upload/{filename} # Get uploaded file
+DELETE /upload/{filename}  # Delete uploaded file
+POST /upload/temp      # Upload temporary file
+DELETE /temp/{filename}  # Delete temporary file
+```
 
-## Project Structure
+## 🏗️ Architecture
 
 ```
-paper-converter/
+la-texzen/
 ├── app/
-│   ├── __init__.py
-│   ├── main.py                 # FastAPI application
-│   ├── database.py             # Database configuration
-│   ├── models.py               # SQLAlchemy models
-│   ├── schemas.py              # Pydantic schemas
-│   ├── hashing.py              # Password hashing
-│   ├── dependencies.py         # Dependency injection
-│   ├── routers/                # API routes
-│   │   ├── __init__.py
-│   │   ├── teams.py           # Team endpoints
-│   │   ├── templates.py       # Template endpoints
-│   │   ├── documents.py       # Document endpoints
-│   │   └── files.py           # File upload endpoints
-│   ├── services/              # Business logic
-│   │   ├── __init__.py
-│   │   ├── document_processing.py
-│   │   └── template_manager.py
-│   └── utils/                 # Utilities
-│       └── __init__.py
-├── templates/                 # LaTeX templates
+│   ├── __init__.py              # App initialization
+│   ├── main.py                  # FastAPI application entry point
+│   ├── database.py              # Database configuration
+│   ├── models.py                # SQLAlchemy models
+│   ├── schemas.py               # Pydantic schemas
+│   ├── hashing.py               # Password hashing utilities
+│   ├── dependencies.py          # Dependency injection
+│   ├── routers/                 # API route handlers
+│   │   ├── teams.py             # Team endpoints
+│   │   ├── templates.py         # Template endpoints
+│   │   ├── documents.py         # Document endpoints
+│   │   └── files.py             # File upload endpoints
+│   ├── services/                # Business logic
+│   │   ├── document_processing.py  # Document processing
+│   │   └── template_manager.py     # Template management
+│   └── utils/                   # Utility functions
+├── templates/                   # LaTeX templates
 │   ├── ieee/
 │   ├── mdpi/
 │   └── springer/
-├── documents/                 # Uploaded documents
-├── processed/                 # Processed documents
-├── logs/                      # Application logs
-├── backups/                   # Database backups
-├── tmp/                       # Temporary files
-├── Dockerfile
-├── docker-compose.yml
-└── requirements.txt
+├── documents/                   # Uploaded documents
+├── processed/                   # Processed documents
+├── logs/                        # Application logs
+├── backups/                     # Database backups
+├── tmp/                         # Temporary files
+├── docs/                        # Documentation
+├── Dockerfile                   # Docker configuration
+├── docker-compose.yml           # Docker Compose configuration
+├── requirements.txt             # Python dependencies
+└── README.md                    # This file
 ```
 
-## Configuration
+## 🛠️ Technology Stack
+
+### Backend
+- **Framework**: FastAPI (Python 3.11+)
+- **Database**: SQLite (development), PostgreSQL (production)
+- **ORM**: SQLAlchemy 2.0
+- **Authentication**: JWT with PyJWT
+- **Password Hashing**: Bcrypt with Passlib
+
+### Document Processing
+- **PDF Processing**: PyMuPDF, pdfplumber
+- **DOCX Processing**: python-docx
+- **OCR**: Tesseract, OpenCV
+- **LaTeX Compilation**: pdflatex
+- **Image Processing**: Pillow, OpenCV
+
+### Infrastructure
+- **Containerization**: Docker
+- **Orchestration**: Docker Compose
+- **Web Server**: Nginx
+- **Process Manager**: Systemd
+
+### Development Tools
+- **Code Formatting**: Black, isort
+- **Linting**: Flake8
+- **Testing**: Pytest
+- **Type Checking**: Mypy
+
+## 📦 Installation with Docker
+
+### Quick Start with Docker
+
+```bash
+# Clone and enter directory
+git clone git@github.com:lef-zach/la-texzen.git
+cd la-texzen
+
+# Build and start containers
+docker-compose up -d --build
+
+# View logs
+docker-compose logs -f app
+
+# Stop containers
+docker-compose down
+```
 
 ### Environment Variables
 
-- `DATABASE_URL`: Database connection URL (default: `sqlite:///./app.db`)
-- `SECRET_KEY`: JWT secret key
-- `ALGORITHM`: JWT algorithm (default: `HS256`)
-- `ACCESS_TOKEN_EXPIRE_MINUTES`: Token expiration time (default: `30`)
+Create a `.env` file:
 
-### Template Customization
-
-Templates are stored in the `templates/` directory. You can create custom templates for any publisher by following the existing template structure.
-
-## Development
-
-### Running Tests
-
-```bash
-pytest tests/
+```env
+DATABASE_URL=sqlite:///./app.db
+SECRET_KEY=your-super-secret-key
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
 ```
 
-### Code Style
+### Docker Services
 
-```bash
-black app/
-isort app/
-flake8 app/
-```
+1. **app** - Main FastAPI application
+2. **nginx** - Reverse proxy and load balancer
 
-## Deployment
-
-### Docker Deployment
-
-1. Build the Docker image:
-```bash
-docker-compose build
-```
-
-2. Start the services:
-```bash
-docker-compose up -d
-```
-
-3. Check logs:
-```bash
-docker-compose logs -f
-```
-
-### Manual Deployment
-
-1. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-2. Create systemd service:
-```bash
-sudo nano /etc/systemd/system/paper-converter.service
-```
-
-3. Enable and start service:
-```bash
-sudo systemctl enable paper-converter
-sudo systemctl start paper-converter
-```
-
-## Security Considerations
+## 🔒 Security
 
 - All passwords are hashed using bcrypt
 - JWT tokens for authentication
-- File upload validation
+- File upload validation and limits
 - CORS configuration
-- Rate limiting (to be implemented)
+- Input validation and sanitization
 
-## Performance Considerations
+## 📈 Performance
 
 - Database indexing for fast queries
 - Caching for templates
 - Asynchronous processing for document conversion
 - Resource limits in Docker deployment
+- Connection pooling for database
 
-## Future Enhancements
+## 🧪 Testing
 
-- Frontend with React + Next.js
-- Real-time collaboration
-- Advanced OCR for scanned documents
-- Math formula recognition
-- Table extraction
-- Citation management integration
-- Export to multiple formats (Word, HTML, etc.)
-- Mobile application
+```bash
+# Run all tests
+pytest tests/
 
-## License
+# Run with coverage
+pytest --cov=app tests/
 
-MIT License
+# Run specific test
+pytest tests/test_auth.py
+```
 
-## Support
+## 📝 License
 
-For issues and questions, please open a GitHub issue.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read our [Contributing Guide](docs/CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
+## 📧 Support
+
+For support, please open an issue on GitHub or contact the maintainers.
+
+## 🙏 Acknowledgments
+
+- [FastAPI](https://fastapi.tiangolo.com/) - Modern Python web framework
+- [SQLAlchemy](https://www.sqlalchemy.org/) - Database toolkit
+- [LaTeX Project](https://www.latex-project.org/) - Document preparation system
+- [Docker](https://www.docker.com/) - Containerization platform
+
+---
+
+**Built with ❤️ by the LaTeXZen Team**
+
+For the latest updates, please visit our [GitHub Repository](https://github.com/lef-zach/la-texzen).
