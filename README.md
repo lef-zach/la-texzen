@@ -2,7 +2,7 @@
 
 A comprehensive web application for converting documents to scientific paper formats (IEEE, MDPI, Springer, etc.) with integrated LaTeX editor functionality.
 
-## 🌟 Features
+##  Features
 
 ### Core Functionality
 - **Document Upload & Processing**: Support for PDF, DOCX, TXT, LaTeX, and image formats
@@ -295,19 +295,19 @@ pytest --cov=app tests/
 pytest tests/test_auth.py
 ```
 
-## 📝 License
+##  License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please read our [Contributing Guide](docs/CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
-## 📧 Support
+##  Support
 
 For support, please open an issue on GitHub or contact the maintainers.
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - [FastAPI](https://fastapi.tiangolo.com/) - Modern Python web framework
 - [SQLAlchemy](https://www.sqlalchemy.org/) - Database toolkit
@@ -316,6 +316,6 @@ For support, please open an issue on GitHub or contact the maintainers.
 
 ---
 
-**Built with ❤️ by the LaTeXZen Team**
+
 
 For the latest updates, please visit our [GitHub Repository](https://github.com/lef-zach/la-texzen).
