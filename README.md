@@ -27,7 +27,7 @@ A comprehensive web application for converting documents to scientific paper for
 - **Citation Management**: Manage citations and references
 - **Export Options**: Export to LaTeX, PDF, and other formats
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 - Python 3.11+
@@ -166,7 +166,7 @@ POST /upload/temp      # Upload temporary file
 DELETE /temp/{filename}  # Delete temporary file
 ```
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 la-texzen/
@@ -203,7 +203,7 @@ la-texzen/
 └── README.md                    # This file
 ```
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 ### Backend
 - **Framework**: FastAPI (Python 3.11+)
@@ -231,7 +231,7 @@ la-texzen/
 - **Testing**: Pytest
 - **Type Checking**: Mypy
 
-## 📦 Installation with Docker
+##  Installation with Docker
 
 ### Quick Start with Docker
 
@@ -266,7 +266,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 1. **app** - Main FastAPI application
 2. **nginx** - Reverse proxy and load balancer
 
-## 🔒 Security
+##  Security
 
 - All passwords are hashed using bcrypt
 - JWT tokens for authentication
@@ -274,7 +274,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 - CORS configuration
 - Input validation and sanitization
 
-## 📈 Performance
+##  Performance
 
 - Database indexing for fast queries
 - Caching for templates
@@ -282,7 +282,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 - Resource limits in Docker deployment
 - Connection pooling for database
 
-## 🧪 Testing
+##  Testing
 
 ```bash
 # Run all tests
