@@ -115,7 +115,7 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 - [Docker Guide](docs/DOCKER.md) - Docker configuration
 - [Security Guide](docs/SECURITY.md) - Security best practices
 
-## 🔌 API Endpoints
+##  API Endpoints
 
 ### Authentication
 ```http
